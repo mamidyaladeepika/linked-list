@@ -28,18 +28,13 @@ public:
     }
     bool isPalindrome(ListNode* head) {
         int n=size(head);
-        ListNode* fast=head,*slow=head,*temp,*prev;
+        ListNode* fast=head,*slow=head,*temp;
         while(fast->next!=NULL&&fast->next->next!=NULL){
             slow=slow->next;
             fast=fast->next->next;
         }
-        if(n%2==0){
-            prev=slow;
-            temp=slow->next;
-        }
-        else
         temp=slow->next;
-        prev->next=NULL;
+        slow->next=NULL;
         ListNode*r=rev(temp);
         while(head!=NULL&&r!=NULL){
             if(head->val!=r->val)
